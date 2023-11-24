@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import PrintText from "./components/PrintText";
 
 function App() {
   let companyName = "Google";
@@ -19,6 +20,8 @@ function App() {
   // add("aa", "bb"); // TSERR: An argument for 'num2' was not provided.
   add(5,4)
 
+  const [learnClicked, setLearnClicked] = useState(false);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -31,10 +34,14 @@ function App() {
           href="https://reactjs.org"
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => setLearnClicked((learnClicked) => !learnClicked)}
         >
           Learn React
         </a>
       </header>
+      {!learnClicked ? (<div style={{margin: "2rem"}}>
+        <PrintText label="Enter text" />
+      </div>)  : <></>}
     </div>
   );
 }
