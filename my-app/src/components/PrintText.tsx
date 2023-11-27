@@ -6,14 +6,16 @@ import React, { useEffect, useState } from 'react'
  * For example, if the user submits “Hi my name is Bob”, the screen should read “Hi”, then “Hi my”, then “Hi my name”, and so on.
  * If the user submits another piece of text reset the display and begin printing the new text.
  **/
-
-const PrintText = ({label}) => {
+type PrintTextProps = {
+    label: string,
+    isShown?: boolean
+}
+const PrintText = ({label, isShown = false} : PrintTextProps) => {
     const [enteredText, setEnteredText] = useState("");
     const [textToPrint, setTextToPrint] = useState("");
-    const timeouts = [];
+    const timeouts: any = [];
 
- 
-    const textInputHandler = (e) => {
+    const textInputHandler = (e: any) => {
         setTextToPrint("");
         setEnteredText(e.target.value)
     }
@@ -40,7 +42,7 @@ const PrintText = ({label}) => {
     useEffect(() => {
         return () => {
             console.log("Cleanup called", timeouts);
-            timeouts.forEach((timeout) => clearTimeout(timeout));
+            timeouts.forEach((timeout: string | number | NodeJS.Timeout | undefined) => clearTimeout(timeout));
         }
     },[])
 

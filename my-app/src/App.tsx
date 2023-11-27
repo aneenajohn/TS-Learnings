@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import PrintText from "./components/PrintText";
+import Button from "./components/Button";
+import Button1 from "./components/Button_1";
 
 function App() {
   let companyName = "Google";
@@ -39,9 +41,26 @@ function App() {
           Learn React
         </a>
       </header>
-      {!learnClicked ? (<div style={{margin: "2rem"}}>
+      {/* {!learnClicked ? (<div style={{margin: "2rem"}}>
         <PrintText label="Enter text" />
-      </div>)  : <></>}
+      </div>)  : <></>} */}
+      {/* <Button
+        label="Click me"
+        padding={[1,0.5]}
+        background="purple"
+        color="white"
+        margin="2rem auto"
+        fontSize={20}
+      /> */}
+      <Button1
+        label="Click me"
+        padding={[1,0.5]}
+        background="purple"
+        color="white"
+        // color="grey" // TSERR: Type '"grey"' is not assignable to type 'Color'.
+        margin={[2,"auto"]} // margin="2rem auto"
+        fontSize={20}
+      />
     </div>
   );
 }
