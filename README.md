@@ -2,24 +2,27 @@
 
 ## Benefits of having TS:
 
-### Type 'number' is not assignable to type 'string' -->
-```let companyName = "Google";
+### Type 'number' is not assignable to type 'string'
+```
+let companyName = "Google";
    companyName = 100;
 ```
 
 
 ### Parameter 'num1' implicitly has an 'any' type
-```function add(num1, num2){ //
+```
+function add(num1, num2){ //
 }
 ```
 
 ### A function whose declared type is neither 'undefined', 'void', nor 'any' must return a value
-```function add(num1: number, num2: number): number {
+```
+function add(num1: number, num2: number): number {
     let res = num1 + num2;
 }
 ```
 
-### Expected 2 arguments, but got 1. An argument for 'num2' was not provided. -->
+### Expected 2 arguments, but got 1. An argument for 'num2' was not provided.
 `add("abc")`
 
 ### Argument of type 'string' is not assignable to parameter of type 'number'.
@@ -27,7 +30,8 @@
 `<PrintText />`
 
 ### Binding element 'label' implicitly has an 'any' type.
- ```const PrintText = ({label}) => {
+ ```
+ const PrintText = ({label}) => {
     // some code
     }
 ```
@@ -37,9 +41,10 @@
 So in react, props is an object and we destructure the keys from this props object.
 Hence our type is also going to be an object as described below
 
-A key containing `key?: value` in a prop of our type is an optional type even if you dont pass, TS wont throw an error
+A key containing `key?: value` in a prop of our type is an optional type even if you don't pass, TS wont throw an error
 
-```function PrintText({label, isShown = false} : {
+```
+function PrintText({label, isShown = false} : {
     label: string,
     isShown?: false
 }) => {}
@@ -58,7 +63,60 @@ const PrintText = ({label, isShown = false} : PrintTextProps) => {}
 
 ## Complete code used for demonstration below:
 ```
+import React from 'react'
 
+// type ButtonProps = {
+//   style: React.CSSProperties,
+//   borderRadius: {
+//     topLeft: number,
+//     topRight: number,
+//     bottomLeft: number,
+//     bottomRight: number
+//   }
+// }
+
+// DOCS: The above type could be re-written as below as well:
+// Record<string, number> => string => is the type of key in this object, and number is the type of value on this object
+// Ref readme for more
+
+type ButtonProps = {
+    style: React.CSSProperties,
+    borderRadius: Record<string, number>,
+    // onClick: () => void, // DOCS: Function without any params and doesn't return anything
+    onClick: (testNum: string) => number,
+    children: React.ReactNode, // DOCS: Accepts everything as children like string, JSX Element, boolean, num etc.
+    // children: JSX.Element // DOCS: Accepts only JSX element <div></div>
+    setCount: React.Dispatch<React.SetStateAction<number>>
+    isPillType?: boolean,
+  }
+
+
+const Button_5 = ({style, borderRadius, onClick, children, setCount, isPillType = false}: ButtonProps) => {
+
+  const {topLeft, topRight, bottomLeft, bottomRight} = borderRadius;
+
+  const clickHandler = () => {
+    onClick("5");
+    setCount((prevCount) => prevCount+1);
+  }
+
+  return (
+    <>
+        <button
+            style={{...style, borderRadius: `${topLeft}px ${topRight}px ${bottomRight}px ${bottomLeft}px` }} onClick={clickHandler}>
+            {children}
+        </button>
+        <Print />
+    </>
+  )
+}
+
+export default Button_5;
+
+
+const Print = ({text = "Hello"}) => {
+    return <p>{text}</p>
+}
 ```
 
 ###  Property 'toUppercase' does not exist on type 'number'.
