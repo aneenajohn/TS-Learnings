@@ -80,7 +80,53 @@ let b = fontSize.toUppercase(); // Property 'toUppercase' does not exist on type
 
 ### Two pole type in TS:
 
-- When we want to specify the length of the array and/or speacify types for different elements of array, then we can use two pole.
+- When we want to specify the length of the array and/or specify types for different elements of array, then we can use two pole.
 - `margin: [number,string]`
 - This allows only elements on this array with 1st element being a number and 2nd should be a string
 
+
+## Specific Object Structure typing VS Generic typing
+
+```
+<!-- Specific -->
+type ButtonProps = {
+  style: React.CSSProperties,
+  borderRadius: {
+    topLeft: number,
+    topRight: number,
+    bottomLeft: number,
+    bottomRight: number
+  }
+}
+
+<!-- Generic -->
+type ButtonProps = {
+    style: React.CSSProperties,
+    borderRadius: Record<string, number>,
+    // onClick: () => void,
+    onClick: (testNum: string) => number,
+  }
+```
+1. Specific Object Structure:
+The first type explicitly defines the structure of the borderRadius object with four specific properties (topLeft, topRight, bottomLeft, bottomRight) each having a number type. This approach provides clarity and strictness about the expected properties and their types.
+
+2. Generalized Object Structure:
+The second type (Record<string, number>) defines a more generalized structure for borderRadius. It allows any number of properties (keys) as strings with corresponding values as numbers. This approach is more flexible, allowing for a varying number of properties in the borderRadius object.
+
+When we want to enforce that structure, the first type is more suitable as it explicitly defines those properties.
+If we need flexibility and anticipate the possibility of additional or dynamic properties for borderRadius, the second type (Record<string, number>) is more appropriate as it allows for a more generic object structure.
+
+## Passing functions as params:
+
+```
+type ButtonProps = {
+    style: React.CSSProperties,
+    borderRadius: Record<string, number>,
+    // onClick: () => void,
+    onClick: (testNum: string) => number,
+}
+```
+
+- When the function doesn't have any parameter and doesn't return anything then, we can type the same as `onClick: () => void`
+
+- Function having a/some params and returning a value can be typed as `onClick: (testNum: string) => number`
