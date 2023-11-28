@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import PrintText from "./components/PrintText";
@@ -17,6 +17,8 @@ function App() {
 
   // }
 
+
+  const [count,setCount] = useState(0);
   function add(num1: number, num2: number): number {
     let res = num1 + num2;
     return res;
@@ -29,7 +31,14 @@ function App() {
   const [learnClicked, setLearnClicked] = useState(false);
 
   const onClick1 = () => { console.log("onClick event fired")}
-  const onClick2 = (testNum : string) :number => {return Number(testNum)}
+  const onClick2 = (testNum : string) :number => {
+    console.log(Number(testNum))
+    return Number(testNum)
+  }
+
+  useEffect(() => {
+    console.log({count});
+  }, [count])
 
   return (
     <div className="App">
@@ -131,9 +140,12 @@ function App() {
         }}
         // onClick={onClick1}
         onClick={onClick2}
+        setCount={setCount}
       >Click me!</Button5>
     </div>
   );
 }
 
 export default App;
+
+

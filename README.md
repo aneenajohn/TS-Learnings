@@ -130,3 +130,54 @@ type ButtonProps = {
 - When the function doesn't have any parameter and doesn't return anything then, we can type the same as `onClick: () => void`
 
 - Function having a/some params and returning a value can be typed as `onClick: (testNum: string) => number`
+
+## Typing children prop:
+
+```
+type ButtonProps = {
+    style: React.CSSProperties,
+    borderRadius: Record<string, number>,
+    onClick: (testNum: string) => number,
+    children: React.ReactNode
+  }
+```
+
+- When we type the `React.ReactNode`, this accepts a string, html element, boolean, it could be anything. All the below snippets are valid.
+
+```
+    <Button>Click me</Button>
+    <Button>{true}</Button>
+    <Button>
+        <icon>I</icon>
+    </Button>
+```
+
+
+## To have strict check to allow only JSX element,
+
+```
+type ButtonProps = {
+    children: JSX.Element
+  }
+```
+
+### TS2747: 'Button5' components don't accept text as child elements. Text in JSX has the type 'string', but the expected type of 'children' is 'Element'.
+```
+**NOT ALLOWED**
+<Button>Click me</Button>
+```
+
+```
+**ALLOWED**
+    <Button>
+        <div>
+            <span></span>
+        </div>
+    </Button>
+```
+
+## Typing Default Params:
+- For components with default params, TS infers the type automatically.
+- Hence we don't have to explicitly type
+
+![Default Param comp](image.png)
