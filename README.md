@@ -2,34 +2,34 @@
 
 ## Benefits of having TS:
 
-### Type 'number' is not assignable to type 'string'
+### TSERR: Type 'number' is not assignable to type 'string'
 ```
 let companyName = "Google";
    companyName = 100;
 ```
 
 
-### Parameter 'num1' implicitly has an 'any' type
+### TSERR: Parameter 'num1' implicitly has an 'any' type
 ```
 function add(num1, num2){ //
 }
 ```
 
-### A function whose declared type is neither 'undefined', 'void', nor 'any' must return a value
+### TSERR: A function whose declared type is neither 'undefined', 'void', nor 'any' must return a value
 ```
 function add(num1: number, num2: number): number {
     let res = num1 + num2;
 }
 ```
 
-### Expected 2 arguments, but got 1. An argument for 'num2' was not provided.
+### TSERR: Expected 2 arguments, but got 1. An argument for 'num2' was not provided.
 `add("abc")`
 
-### Argument of type 'string' is not assignable to parameter of type 'number'.
-### Property 'label' is missing in type '{}' but required in type '{ label: any; }'.
+### TSERR: Argument of type 'string' is not assignable to parameter of type 'number'.
+### TSERR: Property 'label' is missing in type '{}' but required in type '{ label: any; }'.
 `<PrintText />`
 
-### Binding element 'label' implicitly has an 'any' type.
+### TSERR: Binding element 'label' implicitly has an 'any' type.
  ```
  const PrintText = ({label}) => {
     // some code
@@ -119,7 +119,7 @@ const Print = ({text = "Hello"}) => {
 }
 ```
 
-###  Property 'toUppercase' does not exist on type 'number'.
+### TSERR: Property 'toUppercase' does not exist on type 'number'.
 - When we try to access any predefined methods on array/string/obj/number, TS checks if the method used is allowed for this particular data type
 
 ```
@@ -219,7 +219,7 @@ type ButtonProps = {
   }
 ```
 
-### TS2747: 'Button5' components don't accept text as child elements. Text in JSX has the type 'string', but the expected type of 'children' is 'Element'.
+### TSERR: TS2747: 'Button5' components don't accept text as child elements. Text in JSX has the type 'string', but the expected type of 'children' is 'Element'.
 ```
 **NOT ALLOWED**
 <Button>Click me</Button>
