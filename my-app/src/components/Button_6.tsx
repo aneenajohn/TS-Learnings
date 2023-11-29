@@ -12,7 +12,7 @@ interface ButtonProps {
   }
 
 // DOCS: interface can only define objects, other type of data structures can't be described with interface.
-// interface Color = {
+// interface Color {
 //     color: "red" | "blue" | "white" | "purple"
 // }
 // something like a string color isn't possible.
@@ -23,7 +23,7 @@ const color: Color = "purple";
 console.log({color});
 
 
-const Button_5 = ({style, borderRadius, onClick, children, setCount, isPillType = false}: ButtonProps) => {
+const Button_6 = ({style, borderRadius, onClick, children, setCount, isPillType = false}: ButtonProps) => {
 
   const {topLeft, topRight, bottomLeft, bottomRight} = borderRadius;
 
@@ -43,9 +43,10 @@ const Button_5 = ({style, borderRadius, onClick, children, setCount, isPillType 
   )
 }
 
-export default Button_5;
+export default Button_6;
 
-
+// DOCS: For React components with only default params TS infers the type by itself as below, hence not necessary to describe type explicitly
+//  (parameter) text: string
 const Print = ({text = "Hello"}) => {
     return <p>{text}</p>
 }

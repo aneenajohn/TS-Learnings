@@ -239,3 +239,34 @@ type ButtonProps = {
 - Hence we don't have to explicitly type
 
 ![Default Param comp](image.png)
+
+## Interface VS Type
+- Interface can only define objects, our type of data structures can't be described with interface.
+
+```
+interface ButtonProps {
+    style: React.CSSProperties,
+    borderRadius: Record<string, number>,
+    // onClick: () => void, // DOCS: Function without any params and doesn't return anything
+    onClick: (testNum: string) => number,
+    children: React.ReactNode, // DOCS: Accepts everything as children like string, JSX Element, boolean, num etc.
+    // children: JSX.Element // DOCS: Accepts only JSX element <div></div>
+    setCount: React.Dispatch<React.SetStateAction<number>>
+    isPillType?: boolean,
+  }
+```
+
+- Describing strings like below isn't possible.
+```
+type Color = "red" | "blue" | "white" | "purple"
+const color: Color = "purple";
+```
+
+- This has to be an object if it has to be described by interface.
+```
+interface Color {
+     color: "red" | "blue" | "white" | "purple"
+}
+```
+
+
