@@ -268,5 +268,22 @@ interface Color {
      color: "red" | "blue" | "white" | "purple"
 }
 ```
+## Typing component attributes:
 
+React.ComponentProps => would accept all the attributes of  buttton element and it also accepts a `ref={ref}` being forwarded from parent.
+```
+type ButtonProps = React.ComponentProps<"button">;
+```
+
+- To accept only the attributes without ref,
+```
+type ButtonProps = React.ComponentPropsWithoutRef<"button">;
+```
+
+- To accept ref and attributes:
+```
+type ButtonProps = React.ComponentPropsWithRef<"button">;
+```
+
+It's better to specify with or without Ref explicitly.
 
