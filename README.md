@@ -287,3 +287,19 @@ type ButtonProps = React.ComponentPropsWithRef<"button">;
 
 It's better to specify with or without Ref explicitly.
 
+## Intersecting types and interfaces
+
+```
+type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
+  variant?: "primary" | "secondary"
+}
+```
+In interface we use `extends` to intersect
+
+```
+interface ButtonProps extends React.ComponentPropsWithoutRef<"button"> {
+  variant?: "primary" | "secondary"
+}
+```
+
+

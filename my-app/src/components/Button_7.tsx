@@ -15,14 +15,28 @@ import React from 'react'
 // NOTE: prefer ComponentPropsWithRef, if the ref is forwarded, or ComponentPropsWithoutRef when refs are not supported.
 
 // V3
-type ButtonProps = React.ComponentPropsWithoutRef<"button">;
+// type ButtonProps = React.ComponentPropsWithoutRef<"button">;
+// DOCS: type intersection when we want to have a prop which is not an attrbute, we can add to the existing type by `&` using intersection.
 
+type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
+  variant?: "primary" | "secondary"
+}
+
+//DOCS: Interface Version
+// interface ButtonProps extends React.ComponentPropsWithoutRef<"button"> {
+//   variant?: "primary" | "secondary"
+// }
 
 // Button component with attributes
-const Button_7 = ({type, autoFocus}: ButtonProps) => {
+const Button_7 = ({type, autoFocus, variant, ...rest}: ButtonProps) => {
 
   return (
-        <button type={type} autoFocus={autoFocus}>
+        <button type={type} autoFocus={autoFocus} {...rest} style={{
+          margin: "2rem",
+          padding: "1rem",
+          background: "purple",
+          color: "white"
+        }}>
             Click Me!
         </button>
   )
