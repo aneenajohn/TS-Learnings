@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 const Button_9 = () => {
 
     const btnLabelOptions = [
@@ -8,6 +9,14 @@ const Button_9 = () => {
         "Click me one more time!"
     ] as const; // DOCS: `as const` is part of TS not JS.
 
+    type Browser = "Mozilla" | "Chrome" | "Opera" | "Safari"
+    type User = {
+        sessionId: string,
+        clientId: Browser,
+        name: string
+    }
+
+    type GuestUser = Omit<User, "name">
   return (
     <div>
         <button>

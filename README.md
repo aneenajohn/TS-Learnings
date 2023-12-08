@@ -361,3 +361,32 @@ The only other hook that needs a typing, is useContext API
 TODO: Need to add this over
 
 ## Making an array as const:
+
+When we have an array of some strings, TS infers it as string[] by default, so this array can be manipulated later with string elements.
+
+![Alt text](image-2.png)
+
+And when we type this array with `as const` from TS, this is not part of JS. Now, this is not a generic string, it becomes as strict readOnly array with only the defined entries on array.
+
+![Alt text](image-3.png)
+
+## Omitting props from a type
+
+type Omit<T, K extends string | number | symbol> = { [P in Exclude<keyof T, K>]: T[P]; }
+
+Construct a type with the properties of T except for those in type K.
+
+```
+type Browser = "Mozilla" | "Chrome" | "Opera" | "Safari"
+    type User = {
+        sessionId: string,
+        clientId: Browser,
+        name: string
+    }
+
+    <!-- DOCS: When guest User has all props of User type except name when we could use `Omit<t,k>` => Omit the property `k` present in type `t` -->
+
+    type GuestUser = Omit<User, "name">;
+
+    <!-- Guest user will have all props except "name" -->
+```
