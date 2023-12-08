@@ -359,3 +359,5 @@ The only other hook that needs a typing, is useContext API
 ### useContext:
 
 TODO: Need to add this over
+
+## Making an array as const:
