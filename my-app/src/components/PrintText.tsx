@@ -15,7 +15,7 @@ const PrintText = ({label, isShown = false} : PrintTextProps) => {
     const [textToPrint, setTextToPrint] = useState("");
     const timeouts: any = [];
 
-    const textInputHandler = (e: any) => {
+    const textInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setTextToPrint("");
         setEnteredText(e.target.value)
     }

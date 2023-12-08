@@ -8,6 +8,8 @@ import Button2 from "./components/Button_2";
 import Button3 from "./components/Button_3";
 import Button4 from "./components/Button_4";
 import Button5 from "./components/Button_5";
+import Button7 from "./components/Button_7";
+import Button8, { SuperButton } from "./components/Button_8";
 
 function App() {
   let companyName = "Google";
@@ -122,7 +124,7 @@ function App() {
         // onClick={onClick1}
         onClick={onClick2}
       /> */}
-      <Button5
+      {/* <Button5
         style={{
           padding: "1rem 0.5rem",
           backgroundColor: "purple",
@@ -141,7 +143,10 @@ function App() {
         // onClick={onClick1}
         onClick={onClick2}
         setCount={setCount}
-      >Click me!</Button5>
+      >Click me!</Button5> */}
+      {/* <Button7 type='button' autoFocus={true} /> */}
+      <Button8 type="primary" color="red" />
+      <SuperButton type="primary" color="red" size="md"/>
     </div>
   );
 }

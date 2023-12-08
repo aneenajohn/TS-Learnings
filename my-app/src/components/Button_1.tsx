@@ -10,6 +10,7 @@ type ButtonProps = {
     background: Color,
     color: Color,
     fontSize: number
+    type?: "submit" | "reset" | "button",
 }
 
 
