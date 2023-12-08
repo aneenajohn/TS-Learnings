@@ -326,3 +326,36 @@ const textInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     }
 
 ```
+
+## Typing react hooks:
+
+### useState:
+For the primitive values, TS infers the type by itself hence we need not explicitly provide it
+
+```
+<!-- Not necessary to do: -->
+const [count, setCount] = useState<number>(0);
+
+<!-- Fine to do -->
+const [count, setCount] = useState(0);
+```
+
+For the object or an array,
+```
+const [user,setUser] = useState<User | null>(null);
+
+const name = user?.name;
+```
+
+### useRef:
+
+For useRef which holds a mutable Html Element,
+```
+const btnRef = useRef<HTMLButtonElement | null>(null);
+```
+
+The only other hook that needs a typing, is useContext API
+
+### useContext:
+
+TODO: Need to add this over

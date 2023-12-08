@@ -1,5 +1,4 @@
-import { type } from 'os';
-import React from 'react'
+import React, { useState, useRef } from 'react'
 
 
 type ButtonProps = {
@@ -14,6 +13,25 @@ type SuperButtonProps = ButtonProps & {
 
 const Button_8 = ({type, color}: ButtonProps) => {
 
+    type User = {
+        name: string,
+        age: number
+    }
+
+    const [count, setCount] = useState
+    (0);
+    const [abc, setAbc] = useState("hello");
+    const [isBoolean, setBoolean] = useState(true);
+
+    // DOCS: For the primitive values, TS infers the type by itself hence we need not explicitly provide it
+    // const [count, setCount] = useState<number>(0);
+
+    const [user,setUser] = useState<User | null>(null);
+
+    const name = user?.name;
+
+    const btnRef = useRef<HTMLButtonElement | null>(null);
+
   return (
         <button
             style={{
@@ -23,6 +41,7 @@ const Button_8 = ({type, color}: ButtonProps) => {
             color: "white"
             }}
             onClick={(e) => console.log("Btn clicked")}
+            ref={btnRef}
         >
             Click Me!
         </button>
