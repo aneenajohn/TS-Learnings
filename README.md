@@ -301,5 +301,28 @@ interface ButtonProps extends React.ComponentPropsWithoutRef<"button"> {
   variant?: "primary" | "secondary"
 }
 ```
+## Typing events:
 
+For event handlers like onClick/onChange etc, we can attach type to the event if not known by hovering over the event on the callback function, TS infers the actual event type and gives us as below:
 
+![Alt text](image-1.png)
+
+### onClick Events:
+```
+const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        console.log("btn clciked")
+    }
+
+<button onClick={handleClick}></button>/
+```
+### onChange Events:
+
+```
+<input value={enteredText} onChange={textInputHandler}/>
+
+const textInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setTextToPrint("");
+        setEnteredText(e.target.value)
+    }
+
+```

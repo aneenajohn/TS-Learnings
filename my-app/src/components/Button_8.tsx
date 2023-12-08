@@ -22,6 +22,7 @@ const Button_8 = ({type, color}: ButtonProps) => {
             background: "purple",
             color: "white"
             }}
+            onClick={(e) => console.log("Btn clicked")}
         >
             Click Me!
         </button>
@@ -32,6 +33,11 @@ export default Button_8;
 
 
 export const SuperButton = ({type, color, size}: SuperButtonProps) => {
+
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        console.log("btn clciked")
+    }
+
     return (
         <button
             style={{
@@ -42,6 +48,7 @@ export const SuperButton = ({type, color, size}: SuperButtonProps) => {
                 fontSize: `${size === "md" ? '1.5rem' : (size === "sm" ? "1rem" : "2rem")}
                 }`
             }}
+            onClick={handleClick}
         >
             Super Button
         </button>
