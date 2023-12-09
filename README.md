@@ -136,9 +136,9 @@ type ButtonProps = {
 let b = fontSize.toUppercase(); // Property 'toUppercase' does not exist on type 'number'
 ```
 
-### Two pole type in TS:
+### Tuple type in TS:
 
-- When we want to specify the length of the array and/or specify types for different elements of array, then we can use two pole.
+- When we want to specify the length of the array and/or specify types for different elements of array, then we can use tuple.
 - `margin: [number,string]`
 - This allows only elements on this array with 1st element being a number and 2nd should be a string
 
@@ -360,7 +360,9 @@ The only other hook that needs a typing, is useContext API
 
 TODO: Need to add this over
 
-## Making an array as const:
+## Type assertion:
+
+### Making an array as const:
 
 When we have an array of some strings, TS infers it as string[] by default, so this array can be manipulated later with string elements.
 
@@ -369,6 +371,33 @@ When we have an array of some strings, TS infers it as string[] by default, so t
 And when we type this array with `as const` from TS, this is not part of JS. Now, this is not a generic string, it becomes as strict readOnly array with only the defined entries on array.
 
 ![Alt text](image-3.png)
+
+`as` is to assert TS to provide a more specific type.
+
+ The usage of as const in TypeScript is a type assertion that informs the TypeScript compiler that you want to infer the most specific possible literal types for the elements of an array, tuple, or object.
+
+```
+const btnLabelOptions = [
+    "Click me!",
+    "Click me again!",
+    "Click me one more time!"
+] as const;
+```
+This as const syntax ensures that TypeScript infers the tuple type with literal string types, not just a generic array of strings.
+
+### Another example:
+Here when don't describe any type to `previousButtonColor` TS infers it as `string | null`.
+
+However when we know that the buttonColor is of specific type as `type ButtonColor = "red" | "green" | "blue"` 
+
+![Alt text](image-4.png)
+
+We can assert it as:
+```
+useEffect(() => {
+        const previousButtonColor = localStorage.getItem('btnColor') as ButtonColor
+    },[])
+```
 
 ## Omitting props from a type
 

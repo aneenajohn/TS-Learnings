@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 
 const Button_9 = () => {
@@ -16,7 +16,14 @@ const Button_9 = () => {
         name: string
     }
 
-    type GuestUser = Omit<User, "name">
+    // DOCS: When guest User has all props of User type except name when we could use `Omit<t,k>` => Omit the property `k` present in type `t`
+    type GuestUser = Omit<User, "name">;
+
+    type ButtonColor = "red" | "green" | "blue"
+
+    useEffect(() => {
+        const previousButtonColor = localStorage.getItem('btnColor') as ButtonColor
+    },[])
   return (
     <div>
         <button>
