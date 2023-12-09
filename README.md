@@ -419,3 +419,29 @@ type Browser = "Mozilla" | "Chrome" | "Opera" | "Safari"
 
     <!-- Guest user will have all props except "name" -->
 ```
+
+## TS Generics:
+
+In TypeScript, when defining a generic function,`const functionName = <T>(param: T) => {...}`, the angle brackets `<T>` before the function parameters allow you to specify the generic type parameter(s) for that particular function
+
+
+```
+ function convertToArray2<T>(value:T):T[] {
+        return [value]
+    }
+```
+
+The <T> syntax just before the function parameters is the way to declare the generic type parameter T. It indicates that the function convertToArray is a generic function that can accept a type T, and it returns an array of type T[] containing the given value.
+
+### Arrow function:
+*In TSX:*
+
+It is necessary to have a comma `<T,>` for defining generic type. Adding the comma after <T,> helps TypeScript distinguish between JSX and the intended TypeScript generic type parameter. This way, TypeScript recognizes <T,> as a generic type declaration and not a JSX element as in <div></div>.
+
+However in .TS files comma is not necessary
+
+```
+const covertToArray = <T,>(value: T): T[] => {
+        return [value]
+    }
+```

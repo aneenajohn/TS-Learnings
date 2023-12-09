@@ -23,7 +23,34 @@ const Button_9 = () => {
 
     useEffect(() => {
         const previousButtonColor = localStorage.getItem('btnColor') as ButtonColor
-    },[])
+    },[]);
+
+    // Generics:
+
+    // const covertToArray = (value: string):string[] =>  {
+    //     return [value]
+    // }
+
+    /**
+     * Converts a value to an array of same type.
+     * @param {T} value - The value to be converted to an array.
+     * @returns {T[]} An array containing the provided value.
+    **/
+    const covertToArray = <T,>(value: T): T[] => {
+        return [value]
+    }
+
+    covertToArray(2);
+    convertToArray2("Hello");
+    convertToArray2({name: "Abcd"})
+
+    function convertToArray2<T>(value:T):T[] {
+        return [value]
+    }
+
+    convertToArray2(2);
+    convertToArray2("Hello");
+    convertToArray2({name: "Abcd"})
   return (
     <div>
         <button>
