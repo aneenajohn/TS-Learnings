@@ -421,6 +421,7 @@ type Browser = "Mozilla" | "Chrome" | "Opera" | "Safari"
 ```
 
 ## TS Generics:
+Generics in general is preferred to describe the relation between the props passed / could be between the function parameter and the return value.
 
 In TypeScript, when defining a generic function,`const functionName = <T>(param: T) => {...}`, the angle brackets `<T>` before the function parameters allow you to specify the generic type parameter(s) for that particular function
 
@@ -432,6 +433,9 @@ In TypeScript, when defining a generic function,`const functionName = <T>(param:
 ```
 
 The <T> syntax just before the function parameters is the way to declare the generic type parameter T. It indicates that the function convertToArray is a generic function that can accept a type T, and it returns an array of type T[] containing the given value.
+
+*Generics* are used here to describe the relation between the parameter and the return value of this function,
+ie whatever is the type of the value the return value should also be an array of same type
 
 ### Arrow function:
 *In TSX:*
@@ -445,3 +449,11 @@ const covertToArray = <T,>(value: T): T[] => {
         return [value]
     }
 ```
+
+### Exporting common types:
+
+If we need a reusable  `type`, It's better the have them on a separate `types.ts` file and export;
+
+While importing,
+
+We can do `import { Color } from "../lib/types";` or `import { type Color } from "../lib/types";` to explicitly let the dev know its a TS type, not a JS var/func/component

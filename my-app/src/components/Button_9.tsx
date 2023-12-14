@@ -36,6 +36,8 @@ const Button_9 = () => {
      * @param {T} value - The value to be converted to an array.
      * @returns {T[]} An array containing the provided value.
     **/
+    // DOCS: Here there is relation between the parameter and the return value of this function,
+    // ie whatever is the type of the value the return value should also be an array of same type
     const covertToArray = <T,>(value: T): T[] => {
         return [value]
     }
