@@ -136,9 +136,9 @@ type ButtonProps = {
 let b = fontSize.toUppercase(); // Property 'toUppercase' does not exist on type 'number'
 ```
 
-### Two pole type in TS:
+### Tuple type in TS:
 
-- When we want to specify the length of the array and/or specify types for different elements of array, then we can use two pole.
+- When we want to specify the length of the array and/or specify types for different elements of array, then we can use tuple.
 - `margin: [number,string]`
 - This allows only elements on this array with 1st element being a number and 2nd should be a string
 
@@ -360,7 +360,9 @@ The only other hook that needs a typing, is useContext API
 
 TODO: Need to add this over
 
-## Making an array as const:
+## Type assertion:
+
+### Making an array as const:
 
 When we have an array of some strings, TS infers it as string[] by default, so this array can be manipulated later with string elements.
 
@@ -369,6 +371,33 @@ When we have an array of some strings, TS infers it as string[] by default, so t
 And when we type this array with `as const` from TS, this is not part of JS. Now, this is not a generic string, it becomes as strict readOnly array with only the defined entries on array.
 
 ![Alt text](image-3.png)
+
+`as` is to assert TS to provide a more specific type.
+
+ The usage of as const in TypeScript is a type assertion that informs the TypeScript compiler that you want to infer the most specific possible literal types for the elements of an array, tuple, or object.
+
+```
+const btnLabelOptions = [
+    "Click me!",
+    "Click me again!",
+    "Click me one more time!"
+] as const;
+```
+This as const syntax ensures that TypeScript infers the tuple type with literal string types, not just a generic array of strings.
+
+### Another example:
+Here when don't describe any type to `previousButtonColor` TS infers it as `string | null`.
+
+However when we know that the buttonColor is of specific type as `type ButtonColor = "red" | "green" | "blue"` 
+
+![Alt text](image-4.png)
+
+We can assert it as:
+```
+useEffect(() => {
+        const previousButtonColor = localStorage.getItem('btnColor') as ButtonColor
+    },[])
+```
 
 ## Omitting props from a type
 
@@ -390,3 +419,51 @@ type Browser = "Mozilla" | "Chrome" | "Opera" | "Safari"
 
     <!-- Guest user will have all props except "name" -->
 ```
+
+## TS Generics:
+Generics in general is preferred to describe the relation between the props passed / could be between the function parameter and the return value.
+
+In TypeScript, when defining a generic function,`const functionName = <T>(param: T) => {...}`, the angle brackets `<T>` before the function parameters allow you to specify the generic type parameter(s) for that particular function
+
+
+```
+ function convertToArray2<T>(value:T):T[] {
+        return [value]
+    }
+```
+
+The <T> syntax just before the function parameters is the way to declare the generic type parameter T. It indicates that the function convertToArray is a generic function that can accept a type T, and it returns an array of type T[] containing the given value.
+
+*Generics* are used here to describe the relation between the parameter and the return value of this function,
+ie whatever is the type of the value the return value should also be an array of same type
+
+### Arrow function:
+*In TSX:*
+
+It is necessary to have a comma `<T,>` for defining generic type. Adding the comma after <T,> helps TypeScript distinguish between JSX and the intended TypeScript generic type parameter. This way, TypeScript recognizes <T,> as a generic type declaration and not a JSX element as in <div></div>.
+
+However in .TS files comma is not necessary
+
+```
+const covertToArray = <T,>(value: T): T[] => {
+        return [value]
+    }
+```
+
+### Exporting common types:
+
+If we need a reusable  `type`, It's better the have them on a separate `types.ts` file and export;
+
+While importing,
+
+We can do `import { Color } from "../lib/types";` or `import { type Color } from "../lib/types";` to explicitly let the dev know its a TS type, not a JS var/func/component.
+
+### Type `unknown` :
+
+Let's say we need to fetch the data from ana external API, the response of which is unknown, Instead of leaving that `data` from the API as `any` we can type it as `unknown` and have a schema like *Zod* to verify that the shape of the response is as expected particular shape before using the data.
+
+![Alt text](image-5.png)
+
+Here is a sample:
+
+![Alt text](image-6.png)

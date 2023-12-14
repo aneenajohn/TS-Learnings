@@ -10,6 +10,7 @@ import Button4 from "./components/Button_4";
 import Button5 from "./components/Button_5";
 import Button7 from "./components/Button_7";
 import Button8, { SuperButton } from "./components/Button_8";
+import Button10 from './components/Button_10';
 
 function App() {
   let companyName = "Google";
@@ -145,8 +146,12 @@ function App() {
         setCount={setCount}
       >Click me!</Button5> */}
       {/* <Button7 type='button' autoFocus={true} /> */}
-      <Button8 type="primary" color="red" />
-      <SuperButton type="primary" color="red" size="md"/>
+      {/* <Button8 type="primary" color="red" />
+      <SuperButton type="primary" color="red" size="md"/> */}
+
+      <Button10 countValue={5} countHistory={[2, 3, 4, 5]}/>
+      <Button10 countValue={'5'} countHistory={['2','3', '4', '5']}/>
+      <Button10 countValue={true} countHistory={[false, true, true, false]}/>
     </div>
   );
 }
