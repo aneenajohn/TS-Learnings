@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { type Color } from "../lib/types";
 //DOCS: import { Color } from "../lib/types";
 // To differentiate a type from the normal JS variables/functions, we can mention `import {type Color} from ...` while importing
@@ -12,6 +12,23 @@ type ButtonProps<T> = {
 }
 
 const Button_10 = <T,>({countValue, countHistory}: ButtonProps<T>) => {
+
+  const API_URL ="https://animechan.xyz/api/random/anime?title=naruto";
+
+  useEffect(() => {
+    // DOCS: While fetching data from the external API where we don't know the shape the data given in the response.
+
+    fetch(API_URL)
+      .then((response) => response.json())
+      .then((data: unknown) => {
+        console.log(data)
+        // run it through Zod
+        // const todo = todoSchema.parse(data) // DOCS: todoSchema verifies the shape of data.
+
+        // Do Something with the data
+      });
+  },[]);
+
   return (
     <button>Click me!</button>
   )

@@ -456,4 +456,14 @@ If we need a reusable  `type`, It's better the have them on a separate `types.ts
 
 While importing,
 
-We can do `import { Color } from "../lib/types";` or `import { type Color } from "../lib/types";` to explicitly let the dev know its a TS type, not a JS var/func/component
+We can do `import { Color } from "../lib/types";` or `import { type Color } from "../lib/types";` to explicitly let the dev know its a TS type, not a JS var/func/component.
+
+### Type `unknown` :
+
+Let's say we need to fetch the data from ana external API, the response of which is unknown, Instead of leaving that `data` from the API as `any` we can type it as `unknown` and have a schema like *Zod* to verify that the shape of the response is as expected particular shape before using the data.
+
+![Alt text](image-5.png)
+
+Here is a sample:
+
+![Alt text](image-6.png)
