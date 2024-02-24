@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 // type ButtonProps = {
 //   style: React.CSSProperties,
@@ -15,40 +15,56 @@ import React from 'react'
 // Ref readme for more
 
 type ButtonProps = {
-    style: React.CSSProperties,
-    borderRadius: Record<string, number>,
-    // onClick: () => void, // DOCS: Function without any params and doesn't return anything
-    onClick: (testNum: string) => number,
-    children: React.ReactNode, // DOCS: Accepts everything as children like string, JSX Element, boolean, num etc.
-    // children: JSX.Element // DOCS: Accepts only JSX element <div></div>
-    setCount: React.Dispatch<React.SetStateAction<number>>
-    isPillType?: boolean,
-  }
+  style: React.CSSProperties;
+  // Static Object Structure typing => Strict
+  // borderRadius: {
+  //   topLeft: number,
+  //   topRight: number,
+  //   bottomLeft: number,
+  //   bottomRight: number
+  // }
+  borderRadius: Record<string, number>; // DOCS: Genric Object structure allows any key
+  // onClick: () => void, // DOCS: Function without any params and doesn't return anything
+  onClick: (testNum: string) => number;
+  children: React.ReactNode; // DOCS: Accepts everything as children like string, JSX Element, boolean, num etc.
+  // children: JSX.Element // DOCS: Accepts only JSX element <div></div>
+  setCount: React.Dispatch<React.SetStateAction<number>>;
+  isPillType?: boolean;
+};
 
-
-const Button_5 = ({style, borderRadius, onClick, children, setCount, isPillType = false}: ButtonProps) => {
-
-  const {topLeft, topRight, bottomLeft, bottomRight} = borderRadius;
+const Button_5 = ({
+  style,
+  borderRadius,
+  onClick,
+  children,
+  setCount,
+  isPillType = false,
+}: ButtonProps) => {
+  const { topLeft, topRight, bottomLeft, bottomRight } = borderRadius;
 
   const clickHandler = () => {
-    onClick("5");
-    setCount((prevCount) => prevCount+1);
-  }
+    onClick('5');
+    setCount((prevCount) => prevCount + 1);
+  };
 
   return (
     <>
-        <button
-            style={{...style, borderRadius: `${topLeft}px ${topRight}px ${bottomRight}px ${bottomLeft}px` }} onClick={clickHandler}>
-            {children}
-        </button>
-        <Print />
+      <button
+        style={{
+          ...style,
+          borderRadius: `${topLeft}px ${topRight}px ${bottomRight}px ${bottomLeft}px`,
+        }}
+        onClick={clickHandler}
+      >
+        {children}
+      </button>
+      <Print />
     </>
-  )
-}
+  );
+};
 
 export default Button_5;
 
-
-const Print = ({text = "Hello"}) => {
-    return <p>{text}</p>
-}
+const Print = ({ text = 'Hello' }) => {
+  return <p>{text}</p>;
+};
